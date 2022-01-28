@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+
+    <title>1주차 과제 |  팬명록 메인 페이지 만들기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Gothic&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+
+
+        .mytitle {
+            /*background-color: green;*/
+
+            width: 100%;
+            height: 250px;
+
+            /*세 줄 세트 (배경 이미지 넣기)*/
+            /*이미지 어둡게 하기 버전*/
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("https://img.hankyung.com/photo/201706/01.14152801.1.jpg");
+            background-position: center;
+            background-size: auto;
+
+            color: white;
+
+            /*네 줄 세트 (내용물 정돈하기)*/
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .write {
+            max-width: 500px;
+            width: 95%;
+
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+
+
+        .write > button {
+            margin-top: 15px;
+        }
+
+
+        .show {
+            /*모바일 처리 추가설정*/
+            max-width: 500px;
+            width: 95%;
+
+            margin: auto;
+        }
+
+
+        .show > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+
+
+<!--    '응원 남기기' 버튼 onclick 시, save_comment() 함수가 작동되도록 코드 추가-->
+    <script>
+        // 2주차 과제(현재 기온) 추가
+        // 페이지가 로딩되자마자 실행되는 호출 코드
+         $(document).ready(function(){
+             // alert('다 로딩됐다!')
+             $.ajax({
+                 type: "GET",
+                 url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                 data: {},
+                 success: function (response) {
+                     // console.log(response)
+                     let now_temp = response['temp']
+
+                     // 텍스트 바꾸기
+                     $('#temp').text(now_temp)
+                 }
+             })
+        });
+
+
+
+
+        function save_comment() {
+            alert('"응원 남기기" 버튼을 누르면 데이터가 기록될 예정입니다.')
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class="mytitle">
+        <h1>Ariana Grande 팬명록 ✨💖</h1>
+        <!--        2주차 과제(현재 기온) 추가-->
+        <p>🌡️현재 기온 : <span id="temp">00.00도</span></p>
+    </div>
+
+
+    <div class="write">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">닉네임</label>
+        </div>
+
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                      style="height: 100px"></textarea>
+            <label for="floatingTextarea2">응원댓글</label>
+        </div>
+
+<!--    <div class="mybutton">-->
+        <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
+<!--    </div>-->
+    </div>
+
+
+    <div class="show">
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>새로운 앨범 너무 멋져요!</p>
+                    <footer class="blockquote-footer">호빵맨</footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>새로운 앨범 너무 멋져요!</p>
+                    <footer class="blockquote-footer">호빵맨</footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>새로운 앨범 너무 멋져요!</p>
+                    <footer class="blockquote-footer">호빵맨</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
